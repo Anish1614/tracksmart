@@ -1,0 +1,20 @@
+from utils.beckn_client import beckn_post
+
+BECKN_GATEWAY_URL = 'https://sandbox.becknprotocol.io/track'
+
+def track_order(order_id):
+    payload = {
+        "context": {
+            "domain": "beckn.org/logistics",
+            "action": "track",
+            "country": "IND",
+            "city": "std:080",
+            "core_version": "0.9.3",
+            "bap_id": "your-bap-id",
+            "bap_uri": "https://your-bap-url.com"
+        },
+        "message": {
+            "order_id": order_id
+        }
+    }
+    return beckn_post(BECKN_GATEWAY_URL, payload)
