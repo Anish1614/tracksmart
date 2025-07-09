@@ -1,6 +1,6 @@
 from utils.beckn_client import beckn_post
 
-BECKN_GATEWAY_URL = 'http://localhost:5001/beckn/bap/search'  # Example
+BECKN_GATEWAY_URL = 'http://localhost:5001/beckn/bap/search'  
 
 def discover_logistics(search_criteria):
     payload = {

@@ -1,1 +1,5 @@
 # start coding
+
+1. s3-bucket
+tracksmart-inovaare
+
