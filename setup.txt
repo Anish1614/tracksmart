@@ -48,3 +48,13 @@ curl -X POST https://4ahs443uvh.execute-api.us-east-1.amazonaws.com/prod/discove
     "message": {}
   }'
 
+# 
+cd package
+zip -r ../../tracksmart.zip .
+cd ../..
+
+
+curl -X POST https://4ahs443uvh.execute-api.us-east-1.amazonaws.com/prod/track \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: rePKTQlqMP1oPxo6GgqHApRwn2frQmj3aOU158S3" \
+  -d '{ "context": { "bpp_id": "tracksmart" }, "message": {} }'
