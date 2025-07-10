@@ -2,12 +2,21 @@
 resource "aws_dynamodb_table" "tracks" {
   name         = "TrackSmartData"
   billing_mode = "PAY_PER_REQUEST"
+  
   hash_key     = "pk"
   range_key    = "sk"
 
-  attribute { name = "pk"; type = "S" }
-  attribute { name = "sk"; type = "S" }
+  attribute {
+    name = "pk"
+    type = "S"
+  }
+
+  attribute {
+    name = "sk"
+    type = "S"
+  }
 }
+
 
 # IAM role & policies for Lambda
 resource "aws_iam_role" "lambda_exec" {
@@ -113,17 +122,21 @@ resource "aws_api_gateway_stage" "prod" {
 
 # API Key + Usage Plan
 resource "aws_api_gateway_api_key" "key" {
-  name      = "tracksmart_key"
-  enabled   = true
-  stage_key {
-    rest_api_id = aws_api_gateway_rest_api.api.id
-    stage_name  = aws_api_gateway_stage.prod.stage_name
-  }
+  name    = "tracksmart_key"
+  enabled = true
 }
+
+# API Gateway Usage Plan
 resource "aws_api_gateway_usage_plan" "plan" {
   name = "TrackSmartUsagePlan"
-  api_stages { api_id = aws_api_gateway_rest_api.api.id; stage = aws_api_gateway_stage.prod.stage_name }
+
+  api_stages {
+    api_id = aws_api_gateway_rest_api.api.id
+    stage  = aws_api_gateway_stage.prod.stage_name
+  }
 }
+
+# Associate API Key with Usage Plan
 resource "aws_api_gateway_usage_plan_key" "plan_key" {
   key_id        = aws_api_gateway_api_key.key.id
   key_type      = "API_KEY"
