@@ -16,3 +16,35 @@ terraform apply \
   -var lambda_s3_bucket=tracksmart-inovaare \
   -var lambda_s3_key=tracksmart.zip \
   --auto-approve
+
+
+terraform refresh \
+  -var aws_region=us-east-1 \
+  -var lambda_s3_bucket=tracksmart-inovaare \
+  -var lambda_s3_key=tracksmart.zip \
+
+terraform destroy \
+  -var aws_region=us-east-1 \
+  -var lambda_s3_bucket=tracksmart-inovaare \
+  -var lambda_s3_key=tracksmart.zip 
+
+
+curl -X POST https://4ahs443uvh.execute-api.us-east-1.amazonaws.com/prod/discover \
+  -H "x-api-key: rePKTQlqMP1oPxo6GgqHApRwn2frQmj3aOU158S3" \
+  -H "Content-Type: application/json" \
+  -d '{ "context": { "domain": "track", "transaction_id": "tx1" }, "message": {} }'
+
+
+curl -X POST https://4ahs443uvh.execute-api.us-east-1.amazonaws.com/prod/discover \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: rePKTQlqMP1oPxo6GgqHApRwn2frQmj3aOU158S3" \
+  -d '{
+    "context": {
+      "domain": "track",
+      "transaction_id": "tx-123",
+      "action": "discover",
+      "bpp_id": "tracksmart"
+    },
+    "message": {}
+  }'
+
