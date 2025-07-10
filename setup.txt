@@ -3,3 +3,16 @@
 1. s3-bucket
 tracksmart-inovaare
 
+aws s3 cp tracksmart.zip s3://tracksmart-inovaare/tracksmart.zip
+
+
+terraform plan \
+  -var aws_region=us-east-1 \
+  -var lambda_s3_bucket=tracksmart-inovaare \
+  -var lambda_s3_key=tracksmart.zip
+
+terraform apply \
+  -var aws_region=us-east-1 \
+  -var lambda_s3_bucket=tracksmart-inovaare \
+  -var lambda_s3_key=tracksmart.zip \
+  --auto-approve
