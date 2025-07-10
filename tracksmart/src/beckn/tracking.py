@@ -4,41 +4,77 @@ import os
 import json
 import logging
 import requests
+import boto3
+from boto3.dynamodb.conditions import Key, Attr
 from typing import Any, Dict
 
-# Configure logging
+# Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Base Gateway URL (injected via Lambda environment: BECKN_GATEWAY_URL)
-BECKN_GATEWAY_URL = os.getenv("BECKN_GATEWAY_URL")
-if not BECKN_GATEWAY_URL:
-    raise RuntimeError("Environment variable BECKN_GATEWAY_URL is not set")
+# DynamoDB init
+TABLE_NAME = os.getenv("TABLE_NAME")
+if not TABLE_NAME:
+    raise RuntimeError("TABLE_NAME environment variable is missing")
 
-# Full endpoint URI for tracking
-TRACK_URI = f"{BECKN_GATEWAY_URL}/track"
+dynamo = boto3.resource("dynamodb")
+table = dynamo.Table(TABLE_NAME)
 
 def track(request_payload: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Forwards the BECKN track request to the central gateway.
-    :param request_payload: The full BECKN JSON body from the caller.
-    :return: The JSON response from the gateway.
+    Handles BECKN track request by:
+    1. Reading bpp_id from the request
+    2. Looking up the bpp_uri in DynamoDB
+    3. Forwarding the request to the BPP and returning its response
     """
-    logger.info(f"Forwarding tracking payload to {TRACK_URI}")
+    context = request_payload.get("context", {})
+    bpp_id = context.get("bpp_id")
+
+    if not bpp_id:
+        return {
+            "context": context,
+            "error": {
+                "code": "INVALID_REQUEST",
+                "message": "Missing 'bpp_id' in context"
+            }
+        }
+
     try:
-        resp = requests.post(
-            TRACK_URI,
-            headers={"Content-Type": "application/json"},
+        # Fetch BPP URI from DynamoDB
+        pk = f"provider#{bpp_id}"
+        sk = "profile"
+
+        resp = table.get_item(Key={"pk": pk, "sk": sk})
+        item = resp.get("Item")
+
+        if not item or "bpp_uri" not in item:
+            return {
+                "context": context,
+                "error": {
+                    "code": "BPP_NOT_FOUND",
+                    "message": f"No BPP found for id {bpp_id}"
+                }
+            }
+
+        bpp_uri = item["bpp_uri"]
+        logger.info(f"Forwarding track request to BPP URI: {bpp_uri}")
+
+        # Send to BPP
+        headers = {"Content-Type": "application/json"}
+        response = requests.post(
+            bpp_uri,
+            headers=headers,
             data=json.dumps(request_payload),
             timeout=10
         )
-        resp.raise_for_status()
-        return resp.json()
-    except requests.RequestException as e:
-        logger.error(f"Error calling track endpoint: {e}")
-        # Return a BECKN‑style error response
+        response.raise_for_status()
+
+        return response.json()
+
+    except Exception as e:
+        logger.exception("Tracking failed")
         return {
-            "context": request_payload.get("context", {}),
+            "context": context,
             "error": {
                 "code": "TRACKING_FAILED",
                 "message": str(e)

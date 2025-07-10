@@ -1,42 +1,45 @@
-# src/beckn/discovery.py
-
 import os
 import json
 import logging
-import requests
+import boto3
+from boto3.dynamodb.conditions import Attr
 from typing import Any, Dict
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Base Gateway URL (injected via Lambda environment: BECKN_GATEWAY_URL)
-BECKN_GATEWAY_URL = os.getenv("BECKN_GATEWAY_URL")
-if not BECKN_GATEWAY_URL:
-    raise RuntimeError("Environment variable BECKN_GATEWAY_URL is not set")
-
-# Full endpoint URI for discovery
-DISCOVER_URI = f"{BECKN_GATEWAY_URL}/discover"
+# DynamoDB table
+TABLE_NAME = os.getenv("TABLE_NAME")
+if not TABLE_NAME:
+    raise RuntimeError("TABLE_NAME environment variable is missing")
+dynamo = boto3.resource("dynamodb")
+table = dynamo.Table(TABLE_NAME)
 
 def discover(request_payload: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Forwards the BECKN discovery request to the central gateway.
-    :param request_payload: The full BECKN JSON body from the caller.
-    :return: The JSON response from the gateway.
+    Fetches BPP providers from DynamoDB and returns a BECKN-style discovery response.
     """
-    logger.info(f"Forwarding discovery payload to {DISCOVER_URI}")
     try:
-        resp = requests.post(
-            DISCOVER_URI,
-            headers={"Content-Type": "application/json"},
-            data=json.dumps(request_payload),
-            timeout=10
+        # Scan for all provider profiles
+        response = table.scan(
+            FilterExpression=Attr("pk").begins_with("provider#") & Attr("sk").eq("profile")
         )
-        resp.raise_for_status()
-        return resp.json()
-    except requests.RequestException as e:
-        logger.error(f"Error calling discovery endpoint: {e}")
-        # Return a BECKN‑style error response
+
+        providers = []
+        for item in response.get("Items", []):
+            providers.append({
+                "id": item.get("pk", "").replace("provider#", ""),
+                "name": item.get("name", "Unknown"),
+                "bpp_uri": item.get("bpp_uri", "")
+            })
+
+        return {
+            "context": request_payload.get("context", {}),
+            "message": { "providers": providers }
+        }
+
+    except Exception as e:
+        logger.exception("Failed during discovery")
         return {
             "context": request_payload.get("context", {}),
             "error": {
