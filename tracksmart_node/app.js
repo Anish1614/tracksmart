@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3050;
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/bap_db', {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://mongoDB:27017/beckn_db', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
