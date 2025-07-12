@@ -1,0 +1,8 @@
+{
+  "database_user": "ayushzja",
+  "database_password": "Pratik29",
+  "cluster_address": "cluster0.yksmiqf.mongodb.net",
+  "app_name": "",
+  "db_name": "DBtest",
+  "collection_name": ""
+}

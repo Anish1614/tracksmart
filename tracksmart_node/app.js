@@ -234,10 +234,10 @@ app.post('/init', async (req, res) => {
             city: 'std:080', // Bangalore
             action: 'init',
             core_version: '1.2.0',
-            bap_id: 'example-bap.com',
-            bap_uri: 'https://example-bap.com/beckn',
-            bpp_id: carrier || 'example-bpp.com', // Use carrier as bpp_id
-            bpp_uri: 'https://example-bpp.com/beckn', // P3's BPP URL
+            bap_id: 'logistics-bap.tracksmart.in',
+            bap_uri: 'http://98.84.49.228:5002',
+            bpp_id: 'logistics-bpp.tracksmart.in', // Use carrier as bpp_id
+            bpp_uri: 'http://44.213.100.33:6002', // P3's BPP URL
             transaction_id: transactionId,
             message_id: messageId,
             timestamp: new Date().toISOString(),
@@ -271,7 +271,7 @@ app.post('/init', async (req, res) => {
                     tracking: true,
                     start: {
                         location: { address: pickup.address },
-                        contact: { name: pickup.name, phone: pickup.phone },
+                        contact: {  name: pickup.name, phone: pickup.phone },
                         time: { timestamp: pickup.date }
                     },
                     end: {
@@ -299,7 +299,7 @@ app.post('/init', async (req, res) => {
 
     // Send /init to P3's BPP (or Gateway)
     try {
-        const response = await axios.post('https://example-bpp.com/init', initPayload, {
+        const response = await axios.post('http://44.213.100.33:6002/init', initPayload, {
             headers: { 'Content-Type': 'application/json' }
         });
         res.json({

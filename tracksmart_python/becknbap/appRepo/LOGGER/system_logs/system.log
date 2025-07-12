@@ -1,0 +1,258 @@
+2025-07-12 04:35:31,918 - asyncio - ERROR - base_events.py::default_exception_handler::1821:
+Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<send_callback() done, defined at D:\projects\tourdecode\becknbap\main.py:24> exception=AttributeError("type object 'datetime.datetime' has no attribute 'timezone'")>
+Traceback (most recent call last):
+  File "D:\projects\tourdecode\becknbap\main.py", line 31, in send_callback
+    response_context.timestamp = datetime.now(datetime.timezone.utc).isoformat() + "Z"
+                                              ^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'timezone'. Did you mean: 'astimezone'?
+2025-07-12 04:38:03,129 - asyncio - ERROR - base_events.py::default_exception_handler::1821:
+Task exception was never retrieved
+future: <Task finished name='Task-10' coro=<send_callback() done, defined at D:\projects\tourdecode\becknbap\main.py:24> exception=AttributeError("type object 'datetime.datetime' has no attribute 'timezone'")>
+Traceback (most recent call last):
+  File "D:\projects\tourdecode\becknbap\main.py", line 31, in send_callback
+    response_context.timestamp = datetime.now(timezone.utc).isoformat() + "Z"
+                                              ^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'timezone'. Did you mean: 'astimezone'?
+2025-07-12 04:40:31,147 - root - ERROR - main.py::init::148:
+In file 'D:\projects\tourdecode\becknbap\main.py
+In line 143: asyncio.create_task(db["Order"].insert_one(message))
+TypeError: 'NoneType' object is not subscriptable 
+2025-07-12 04:40:32,021 - root - ERROR - main.py::send_callback::38:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 04:48:02,317 - root - ERROR - main.py::init::151:
+In file 'D:\projects\tourdecode\becknbap\main.py
+In line 146: asyncio.create_task(db["Order"].insert_one(message))
+TypeError: 'NoneType' object is not subscriptable 
+2025-07-12 04:48:02,885 - root - ERROR - main.py::send_callback::56:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 04:49:09,576 - root - ERROR - utils.py::getConfig::25:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:49:09,576 - root - ERROR - utils.py::create::71:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 50: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:49:09,576 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:49:15,710 - root - ERROR - main.py::init::151:
+In file 'D:\projects\tourdecode\becknbap\main.py
+In line 146: asyncio.create_task(db["Order"].insert_one(message))
+TypeError: 'NoneType' object is not subscriptable 
+2025-07-12 04:49:16,313 - root - ERROR - main.py::send_callback::56:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 04:49:45,192 - root - ERROR - utils.py::getConfig::25:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:49:45,192 - root - ERROR - utils.py::create::71:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 50: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:49:45,192 - root - ERROR - main.py::lifespan::28:
+Failed to connect to MongoDB during startup
+2025-07-12 04:49:53,813 - root - ERROR - utils.py::getConfig::25:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:49:53,813 - root - ERROR - utils.py::create::71:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 50: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:49:53,815 - root - ERROR - main.py::lifespan::28:
+Failed to connect to MongoDB during startup
+2025-07-12 04:49:59,940 - root - ERROR - utils.py::getConfig::25:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:49:59,940 - root - ERROR - utils.py::create::71:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 50: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:49:59,941 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:51:11,313 - root - ERROR - utils.py::getConfig::26:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:51:11,313 - root - ERROR - utils.py::create::72:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 51: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:51:11,313 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:51:19,803 - root - ERROR - main.py::init::152:
+In file 'D:\projects\tourdecode\becknbap\main.py
+In line 147: asyncio.create_task(db["Order"].insert_one(message))
+TypeError: 'NoneType' object is not subscriptable 
+2025-07-12 04:51:20,380 - root - ERROR - main.py::send_callback::57:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 04:51:56,899 - root - ERROR - utils.py::getConfig::26:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:51:56,899 - root - ERROR - utils.py::create::72:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 51: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:51:56,899 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:52:42,155 - root - ERROR - utils.py::getConfig::27:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:52:42,155 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 52: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:52:42,155 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:53:05,158 - root - ERROR - utils.py::getConfig::27:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:53:05,158 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 52: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:53:05,158 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:53:17,041 - root - ERROR - utils.py::getConfig::27:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config' 
+2025-07-12 04:53:17,044 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 52: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:53:17,044 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:54:16,159 - root - ERROR - utils.py::getConfig::27:
+In file 'C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py
+In line 58: result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\tourdecode\\becknbap\\appRepo\\mongo_config.sjon' 
+2025-07-12 04:54:16,159 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 52: user = mongo_config['database_user']
+KeyError: 'database_user' 
+2025-07-12 04:54:16,159 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:54:18,369 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 57: collection_name = mongo_config["collection_name"]
+KeyError: 'collection_name' 
+2025-07-12 04:54:18,369 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:54:28,427 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 57: collection_name = mongo_config["collection_name"]
+KeyError: 'collection_name' 
+2025-07-12 04:54:28,427 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:54:42,317 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 57: collection_name = mongo_config["collection_name"]
+KeyError: 'collection_name' 
+2025-07-12 04:54:42,317 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:54:51,397 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 57: collection_name = mongo_config["collection_name"]
+KeyError: 'collection_name' 
+2025-07-12 04:54:51,398 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:55:07,576 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 57: collection_name = mongo_config["collection_name"]
+KeyError: 'collection_name' 
+2025-07-12 04:55:07,576 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:55:15,488 - root - ERROR - main.py::init::152:
+In file 'D:\projects\tourdecode\becknbap\main.py
+In line 147: asyncio.create_task(db["Order"].insert_one(message))
+TypeError: 'NoneType' object is not subscriptable 
+2025-07-12 04:55:16,038 - root - ERROR - main.py::send_callback::57:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 04:55:49,156 - root - ERROR - main.py::init::152:
+In file 'D:\projects\tourdecode\becknbap\main.py
+In line 147: asyncio.create_task(db["Order"].insert_one(message))
+TypeError: 'NoneType' object is not subscriptable 
+2025-07-12 04:55:49,636 - root - ERROR - main.py::send_callback::57:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 04:56:08,658 - root - ERROR - main.py::init::152:
+In file 'D:\projects\tourdecode\becknbap\main.py
+In line 147: asyncio.create_task(db["Order"].insert_one(message))
+TypeError: 'NoneType' object is not subscriptable 
+2025-07-12 04:56:09,175 - root - ERROR - main.py::send_callback::57:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 04:57:02,012 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 59: connection_string = connection_string_template.format(
+KeyError: 'app_name' 
+2025-07-12 04:57:02,012 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:57:11,348 - root - ERROR - main.py::init::152:
+In file 'D:\projects\tourdecode\becknbap\main.py
+In line 147: asyncio.create_task(db["Order"].insert_one(message))
+TypeError: 'NoneType' object is not subscriptable 
+2025-07-12 04:57:11,895 - root - ERROR - main.py::send_callback::57:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 04:57:58,504 - root - ERROR - utils.py::create::73:
+MongoDB connection failed: In file 'D:\projects\tourdecode\becknbap\resources\utils.py
+In line 59: connection_string = connection_string_template.format(
+KeyError: 'app_name' 
+2025-07-12 04:57:58,504 - root - ERROR - main.py::lifespan::29:
+Failed to connect to MongoDB during startup
+2025-07-12 04:58:36,517 - root - INFO - utils.py::create::70:
+Connected to MongoDB
+2025-07-12 04:58:36,520 - root - ERROR - utils.py::__init__::38:
+In file 'D:\projects\tourdecode\venv\Lib\site-packages\pymongo\asynchronous\collection.py
+In line 240: raise InvalidName("collection names cannot be empty")
+InvalidName: collection names cannot be empty 
+2025-07-12 04:58:42,292 - root - INFO - utils.py::close::80:
+MongoDB connection closed
+2025-07-12 04:58:42,292 - root - INFO - main.py::lifespan::37:
+MongoDB connection closed during shutdown
+2025-07-12 04:58:44,544 - root - INFO - utils.py::create::69:
+Connected to MongoDB
+2025-07-12 04:58:44,544 - root - ERROR - utils.py::__init__::38:
+In file 'D:\projects\tourdecode\venv\Lib\site-packages\pymongo\asynchronous\collection.py
+In line 240: raise InvalidName("collection names cannot be empty")
+InvalidName: collection names cannot be empty 
+2025-07-12 05:00:02,573 - root - INFO - utils.py::close::79:
+MongoDB connection closed
+2025-07-12 05:00:02,573 - root - INFO - main.py::lifespan::37:
+MongoDB connection closed during shutdown
+2025-07-12 05:00:04,958 - root - INFO - utils.py::create::69:
+Connected to MongoDB
+2025-07-12 05:01:13,172 - root - INFO - utils.py::close::79:
+MongoDB connection closed
+2025-07-12 05:01:13,172 - root - INFO - main.py::lifespan::37:
+MongoDB connection closed during shutdown
+2025-07-12 05:11:35,465 - root - INFO - utils.py::create::69:
+Connected to MongoDB
+2025-07-12 05:11:37,666 - root - ERROR - main.py::send_callback::57:
+Failed to send callback to http://98.84.49.228:5002/: In file 'D:\projects\tourdecode\venv\Lib\site-packages\httpx\_urls.py
+In line 121: raise TypeError(
+TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'pydantic.networks.HttpUrl'>: HttpUrl('http://98.84.49.228:5002/') 
+2025-07-12 05:11:44,584 - root - INFO - utils.py::close::79:
+MongoDB connection closed
+2025-07-12 05:11:44,584 - root - INFO - main.py::lifespan::37:
+MongoDB connection closed during shutdown
